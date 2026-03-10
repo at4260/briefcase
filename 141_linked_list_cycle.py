@@ -21,7 +21,7 @@ def hasCycle(head: Optional[ListNode]) -> bool:
 	while fast and fast.next:
 		fast = fast.next.next
 		slow = slow.next
-		if fast == slow:
+		if fast == slow: # goes after moving because initialization where fast = slow = head would return True
 			return True            
 	return False
 
