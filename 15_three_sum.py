@@ -108,14 +108,15 @@ def threeSum(nums: list) -> list[int]:
 				left += 1
 				right -= 1
 
-				# skip all the dupes
-				while left < right and nums[left - 1] == nums[left]:
-					left += 1
+			# skip all the dupes
+			while left < right and nums[left - 1] == nums[left]:
+				left += 1
 
-				while left < right and nums[right + 1] == nums[right]:
-					right -= 1
+			# left dupe check above handles protecting against adding dupes to triplets, 
+			# this check is just for efficiency
+			while left < right and right < len(nums) - 1 and nums[right] == nums[right + 1]:
+				right -= 1
 					
-
 	return triplets	
 
 

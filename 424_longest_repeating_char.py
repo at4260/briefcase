@@ -22,13 +22,35 @@ def characterReplacement(s: str, k: int) -> int:
 	# sliding window - smartly moves the window along to only check valid possibilities
 	# aka as soon as a window is no longer valid, there's no need to continue expanding 
 	# the right pointer window to keep checking
-	# On time, O(1) space (specifically O(26))
+
+	# O(n) time for the loop * O(26) time for the occasional maxf lookup => O(n * 26) => O(n), 
+	# O(1) space (specifically O(26))	
+	i, j = 0, 0
+	count = {}
+	maxf = 0
+	res = 0
+	while j < len(s):
+		count[s[j]] = count.get(s[j], 0) + 1
+		maxf = max(count.values())
+		sublen = j - i + 1
+		if (sublen - maxf) <= k: # valid
+			res = max(res, sublen)
+		else:
+			count[s[i]] -= 1
+			maxf = max(count.values()) # updates maxf - this version doesn't include the stale maxf trick (see Note 2)
+			i += 1
+		j += 1
+
+	return res
+
+
+	# O(n) time, O(1) space (specifically O(26))
 	max_len = 0
 	i = 0
 	seen = {} # char: freq
 	for j in range(len(s)):
 		seen[s[j]] = seen.get(s[j], 0) + 1
-		max_count = max(seen.values()) # get max val
+		max_count = max(max_count, seen[s[j]]) # O(1) time
 		curr_len = j - i + 1
 		# while loop is canonical here, see note 1 below
 		if (curr_len - max_count) <= k:
@@ -73,7 +95,7 @@ More intuitive to explain ("keep shrinking until valid")
 '''
 
 '''
-Optimal stale max_count solution:
+Note 2: Optimal stale max_count solution:
 
 	max_len = 0
 	max_count = 0
@@ -107,4 +129,14 @@ The staleness only affects our decision about SHORTER windows (which we don't ca
 So the stale max_count is "harmless" because:
 It might make us keep a window that's actually invalid, but that window is ≤ our previous best anyway
 When we expand to a NEW longest window, we update max_count correctly (when we see a new max frequency character)
+
+* Additional key insight: If we find a window of length N that's valid and then hit an invalid window of N+1, we
+don't bother shrinking the window to try to find a valid window of length N again, because we already have that 
+length as our best result. So we keep the N+1 window size and keep sliding forward, while only expanding, never shrinking.
+
+Summary: We never need to recalculate maxf when shrinking because we only care about beating our current best result. 
+To find a longer valid window, maxf would need to legitimately grow anyway — and it only grows when we expand j and 
+find a real character count increase. So a stale maxf might let us slide the window without shrinking, but it can never 
+produce a false best result.
+
 '''
