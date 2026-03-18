@@ -1,3 +1,5 @@
+# REVIEW
+
 class MyQueue:
 
     # Python list already operates like a stack under the hood
