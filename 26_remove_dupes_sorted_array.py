@@ -16,20 +16,17 @@ def removeDupes(nums: list) -> int:
 
     # return len(nums)
 
-    # three pointers
+    # two pointers - find the next nondupe and assign to left pointer's spot
     # o1 space, on time
-    k = 1 # tracks the next non-dupe we see, also holds the number of unique elements
-    i = 0 # left pointer
-    j = 0 # right pointer
+    left = 0
+    right = 0
+    while right < len(nums):
+        if nums[left] != nums[right]:
+            left += 1
+            nums[left] = nums[right]
+        right += 1
 
-    while j < len(nums):
-        if nums[i] != nums[j]:
-            nums[k] = nums[j]
-            k += 1 
-        i += 1 
-        j += 1 
-
-    return k
+    return left + 1
 
 
 nums = [0,0,1,1,1,2,3,3,4]			

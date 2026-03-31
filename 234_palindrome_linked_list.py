@@ -7,9 +7,10 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # O(2n) => O(n) time, O(n) space
         vals = []
-        while head:
-            vals.append(head.val)
-            head = head.next
+        curr = head
+        while curr:
+            vals.append(curr.val)
+            curr = curr.next
         
         left = 0
         right = len(vals) - 1
@@ -33,13 +34,13 @@ class Solution:
             fast = fast.next.next
         
         # reverse the right half of the list
-        pointer = slow.next
-        slow.next = None
-        while pointer:
-            tmp = pointer.next
-            pointer.next = slow
-            slow = pointer
-            pointer = tmp
+        prev = None
+        curr = slow
+        while curr:
+            tmp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tmp
 
         # slow is at the end; compare against head
         while head and slow:

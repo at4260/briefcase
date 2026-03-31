@@ -1,12 +1,8 @@
 def test_func(s: str, t: str) -> bool:
 	# O(n log n) time complexity due to sorting
 	# O(n) space complexity
-	# s1 = list(s)
-	# t1 = list(t)
-	# s1.sort()
-	# t1.sort()
-	# print(s1)
-	# print(t1)
+	# s1 = sorted(s)
+	# t1 = sorted(t)
 	# return s1 == t1
 	
 	# O(n) time complexity 
@@ -33,23 +29,20 @@ def test_func(s: str, t: str) -> bool:
 	# 			s_seen.pop(y)
 
 	# return True
-    
 
-	# O(n2) time complexity due to replace doing another scan of the string
-	# O(n) space complexity due to creating new string each time
-	if len(s) != len(t):
-		return False
+	seen = defaultdict(int)
+	for char in s:
+		seen[char] += 1
 
-	for x in s:
-		print(1, x, s, t)
-		if x in t:
-			t = t.replace(x, '', 1)
+	for char in t:
+		if seen.get(char):
+			seen[char] -= 1
+			if not seen[char]:
+				seen.pop(char)
 		else:
 			return False
 
-	return True	
-
-
+	return not seen 
 		
 
 

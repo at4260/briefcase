@@ -7,24 +7,31 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
 	# On2 time, On space
 	vals = []
 	for i in range(len(nums)):
-		val = 1
+		total = 1
 		for j in range(len(nums)):
-			if i != j:
-				val = val*nums[j]
-				if j == len(nums) - 1:
-					vals.append(val)
+			if i == j:
+				continue
+			total *= nums[j]
+			
+		vals.append(total)
 
 	return vals
 
 	# using divison operator
 	# On time, On space
 	vals = []
-	val = 1
+	total = 1
+	nozerototal = 1
 	for num in nums:
-		val = val * num
+		if num != 0:
+			nozerototal *= num
+		total *= num
 
 	for num in nums:
-		vals.append(val / num) # 0/0 results in zero error and incorrect output
+		if num == 0: # 0/0 results in zero error 
+			vals.append(nozerototal)
+		else:
+			vals.append(total // num) 
 
 	return vals
 
