@@ -1,7 +1,7 @@
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
         # standard approach, O(1) addl space, O(n) time
-		answer = []
+        answer = []
         for val in range(1, n + 1):
             # calculate once
             div3 = val % 3 == 0
@@ -40,6 +40,27 @@ class Solution:
                 answer.append(str(val))
 
         return answer
+    
+        # same concept as above but we don't really need a counter
+        res = []
+        mul3 = 3
+        mul5 = 5
+
+        for i in range(1, n+1):
+            if i == mul3 and i == mul5:
+                res.append("FizzBuzz")
+                mul3 += 3
+                mul5 += 5
+            elif i == mul5:
+                res.append("Buzz")
+                mul5 += 5
+            elif i == mul3:      
+                res.append("Fizz")
+                mul3 += 3
+            else:
+                res.append(str(i))
+
+        return res
 
         # another way, O(1) addl space, O(n) time (precise: 1 + 1/3 + 1/5 + 1/15 = 1 3/5)
         answer = []

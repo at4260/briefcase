@@ -32,13 +32,12 @@ def characterReplacement(s: str, k: int) -> int:
 	res = 0
 	while j < len(s):
 		count[s[j]] = count.get(s[j], 0) + 1
-		maxf = max(count.values())
+		maxf = max(count.values()) # this version doesn't include the stale maxf trick (see Note 2)
 		sublen = j - i + 1
 		if (sublen - maxf) <= k: # valid
 			res = max(res, sublen)
 		else:
 			count[s[i]] -= 1
-			maxf = max(count.values()) # updates maxf - this version doesn't include the stale maxf trick (see Note 2)
 			i += 1
 		j += 1
 

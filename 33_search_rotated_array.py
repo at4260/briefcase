@@ -4,6 +4,7 @@ def search(nums: List[int], target: int) -> int:
 	# nums = [4,5,6,7,0,1,2], target = 0 => 4
 	# nums = [4,5,6,7,0,1,2], target = 3 => -1
 	# nums = [1], target = 0 => -1
+	# nums = [3,1], target = 1 => 1
 
 	# brute force - search through entire list
 	# On space, O1 space
