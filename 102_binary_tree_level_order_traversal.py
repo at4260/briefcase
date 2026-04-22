@@ -7,7 +7,7 @@
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         # bfs iterative
-        # O(n) time, O(n) space (actually O(n/2) queue can hold all nodes in last level which is approx half the nodes of the tree)
+        # O(n) time, O(w) space (in balanced tree, it's O(n/2) -> O(n) representing nodes in the last layer)
         queue = deque()
         if root:
             queue.append(root) 
@@ -26,6 +26,26 @@ class Solution:
             res.append(level)
             level = []
             
+        return res
+    
+
+        # dfs recursive - save each level the node belongs to
+        # O(n) time, O(h) space excluding output for the call stack, O(n) total
+        res = []
+        def dfs(node, level):
+            if not node:
+                return 
+            
+            # if new level, create array
+            if level == len(res):
+                res.append([])
+
+            # add current node to the subarray corresponding to its level
+            res[level].append(node.val)
+            dfs(node.left, level + 1)
+            dfs(node.right, level + 1)
+
+        dfs(root, 0)
         return res
     
 

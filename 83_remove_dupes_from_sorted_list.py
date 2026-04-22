@@ -21,3 +21,15 @@ class Solution:
 
         return head
     
+
+        # recursive - works from back of list to front
+        # O(n) time, O(n) space for recursion stack
+        if not head or not head.next:
+            return head
+        
+        head.next = self.deleteDuplicates(head.next)
+        if head.val == head.next.val:
+            return head.next
+        else:
+            return head
+    

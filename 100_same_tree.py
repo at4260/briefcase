@@ -18,7 +18,7 @@ class Solution:
         
 
         # iterative DFS - LIFO
-        # On time, On space
+        # On time, O(h) space
         stack = [(p, q)]
 
         while stack:
@@ -35,7 +35,7 @@ class Solution:
         return True        
         
         # iterative BFS - FIFO
-        # On time, On space
+        # On time, O(w) space
         queue = deque()
         queue.append((p,q)) # deque/array of tuples
 

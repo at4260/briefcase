@@ -1,7 +1,7 @@
 
 def dailyTemperatures(temperatures: List[int]) -> List[int]:
 	# brute force
-	# On2 time, On space
+	# On2 time, O1 additional space, On output space
 	# answers = [0] * len(temperatures)
 	# for i in range(len(temperatures)):
 	#     for j in range(i+1, len(temperatures)):
@@ -12,7 +12,7 @@ def dailyTemperatures(temperatures: List[int]) -> List[int]:
 	# return answers
 
 	# stacks solution
-	# On time, On space
+	# On time, On additional space
 	stack = [] # store index
 	answers = [0] * len(temperatures)
 
