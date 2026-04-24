@@ -49,3 +49,32 @@ class Solution:
             right.next = left
             right = tmp_right
 
+
+
+        # alternative using right of mid
+
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        # odd number LL - slow = mid; even number LL - slow is right of mid
+
+        curr = slow.next
+        slow.next = None
+        while curr:
+            tmp = curr.next
+            curr.next = slow
+            slow = curr
+            curr = tmp
+        
+        left = head
+        right = slow
+        while left.next:
+            left_tmp = left.next
+            left.next = right
+            left = left_tmp
+
+            if right.next:
+                right_tmp = right.next
+                right.next = left
+                right = right_tmp
