@@ -28,10 +28,12 @@ def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optio
 		return list1
 
 	if list1.val <= list2.val:
-		list1.next = self.mergeTwoLists(list1.next, list2)
+		next_node = self.mergeTwoLists(list1.next, list2)
+		list1.next = next_node
 		return list1
 	else:
-		list2.next = self.mergeTwoLists(list1, list2.next)
+		next_node = self.mergeTwoLists(list1, list2.next)
+		list2.next = next_node
 		return list2
 	
 

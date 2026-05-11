@@ -16,14 +16,14 @@ def maxProfit(prices):
 
 	# On time, 01 space
 	max_profit = 0
-	smallest = prices[0]
-	for val in prices:
-		if val < smallest:
-			smallest = val
-		if val > smallest:
-			profit = val - smallest
-			if profit > max_profit:
-				max_profit = profit
+	buy_price = prices[0]
+	for sell_price in prices:
+		if sell_price <= buy_price:
+			buy_price = sell_price
+		else:
+			max_profit = max(max_profit, sell_price - buy_price)
+
+	return max_profit				
 
 			
 res = maxProfit(prices)

@@ -2,7 +2,7 @@
 values = [3, 2, 3]
 target = 6
 
-
+# O(n) time, O(n) space
 def twoSums(values, target):
 	dict = {}
 	for ind, val in enumerate(values): # 0, 3

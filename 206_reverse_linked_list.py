@@ -4,7 +4,7 @@ def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
 	# On time, O1 space
 	prev, curr = None, head
 
-	while curr is not None:
+	while curr:
 		# save next before you lose it
 		temp = curr.next
 		# flip the pointer around
