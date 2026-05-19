@@ -9,6 +9,7 @@ class LRUCache:
             # deque (fifo) can do O(1) operations but cannot update a key-val pair in O(1) time
             # hash map alone can do key-val pair updates in O(1) but cannot track order
             # singly linked list would require traversing the list to get the previous node
+            # hash map with an stack/deque would require O(n) when re-accessing a random node moves it to the front/back of list
 
     def __init__(self, capacity: int):
         self.capacity = capacity

@@ -5,40 +5,43 @@ s = ""
 
 
 def isPalindrome(s):
+    # O(n) time, O(n) space to clean the string
 	# clean our string
     s = s.lower()
-    str = re.sub(r'[^a-zA-Z0-9]', '', s)
+    cleaned = re.sub(r'[^a-zA-Z0-9]', '', s)
     # s = "amanaplanacanalpanama"
 
     # brute force - copy, reverse, compare
-    # return str == str[::-1]
+    # return cleaned == cleaned[::-1]
     # on space
     # on time
 
-
-    # edge cases
-    # s = "" -> true
-    # s = "a" -> true
-    # s = "aa" -> true midpoint = 1
-    # s = "aba" -> true midpoint = 1
-    # s = "racr" -> true midpoint = 1
-    # s = "racar" -> true midpoint = 1
-
     # two pointers
-    left, right = 0, len(str) - 1
-    midpoint = len(str) // 2
-    for i in range(0, midpoint):
-    # alternative: while left < right:
-        if str[left] != str[right]:
+    left, right = 0, len(cleaned) - 1
+    while left < right:
+        if cleaned[left] != cleaned[right]:
             return False
         left += 1
         right -= 1
     return True
-    # O1 space
-    # On time
 
+    # O(n) time, O(1) space
+    left, right = 0, len(s) - 1
+    while left < right:
+        while left < right and not isAlphaNum(s[left].lower()):
+            left += 1
+        while left < right and not isAlphaNum(s[right].lower()):
+            right -= 1
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True
 
+    def isAlphaNum(char):
+        # ignore special chars and spaces, only accept letters and numbers
+        return (ord('a') <= ord(char) <= ord('z')) or (ord('0') <= ord(char) <= ord('9'))
 
-			
-res = isPalindrome(str)
+	
+res = isPalindrome(s)
 print('Results: ', res)	
