@@ -41,6 +41,30 @@ def threeSum(nums: list) -> list[int]:
 
 	# return triplets
 
+	# hash map on the fly, similar to 2sum
+	# On2 time
+	# res = []
+	# nums.sort()
+
+	for i in range(len(nums)):
+		if i > 0 and nums[i] == nums[i - 1]:
+			continue
+		seen = set()
+		target = -nums[i]
+		j = i + 1
+		while j < len(nums):
+			goal = target - nums[j]
+			if goal in seen:
+				res.append([goal, nums[i], nums[j]])
+				while j + 1 < len(nums) and nums[j] == nums[j+1]:
+					j += 1
+			else:
+				seen.add(nums[j])
+			j += 1
+				
+	return res
+
+
 	# ideal
     # on2 time, on space
 	# triplets = []
