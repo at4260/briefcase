@@ -45,3 +45,24 @@ def isPalindrome(s):
 	
 res = isPalindrome(s)
 print('Results: ', res)	
+
+# valid palindrome using an int and constant space
+class Solution:
+    def is_palindrome(self, input_int: int) -> bool:
+        """
+        Returns true if the input integer is a palindrome
+        with constant space complexity.
+        :param input_int: Input integer to be tested.
+        :return: True if the input integer is a palindrome.
+        """
+
+        # reverse the int arithmetically and compare results
+        copy_int = input_int
+        reversed_int = 0
+        while copy_int: 
+            remainder = copy_int % 10
+            reversed_int = reversed_int * 10 + remainder
+            copy_int = copy_int // 10
+            
+        return reversed_int == input_int
+            
