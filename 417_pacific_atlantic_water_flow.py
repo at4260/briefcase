@@ -31,4 +31,5 @@ class Solution:
                     dfs(row, col, heights[row][col], atlantic_visited)
                 
 
+        # return [[row, col] for (row, col) in pacific_visited if (row, col) in atlantic_visited]
         return list(set(pacific_visited).intersection(atlantic_visited))
