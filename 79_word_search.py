@@ -1,7 +1,7 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         # dfs - O(n*m*4^L) time with L = length of word, O(L) space
-        # can move in any four directions
+        # can move in any four directions, and we unmarked previously visited cells if no path found
 
         def dfs(r,c,word_idx):
             # base case

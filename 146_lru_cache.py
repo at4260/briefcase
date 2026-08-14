@@ -1,3 +1,10 @@
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.next = None
+        self.prev = None
+
 class LRUCache:
 
     # O(1) time for each function, O(n) space
@@ -58,7 +65,7 @@ class LRUCache:
             self.add(node)
         else:
             # evict LRU if exceeds capacity
-            if len(self.cache.keys()) == self.capacity:
+            if len(self.cache) == self.capacity:
                 lru_node = self.tail.prev
                 self.remove(lru_node)
                 # remove from hash map
@@ -71,12 +78,6 @@ class LRUCache:
             self.cache[key] = new
         
 
-class Node:
-    def __init__(self, key, val):
-        self.key = key
-        self.val = val
-        self.next = None
-        self.prev = None
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)

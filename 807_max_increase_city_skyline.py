@@ -28,7 +28,8 @@ class Solution:
         # 0,2=>2,0
         # 2,3=>3,2
         # [[0] * len(grid)] * len(grid[0]) creates references to the same inner array
-        # "*"" repeats references so only works if repeated val is immutable
+        # "*"" repeats references so only works if repeated val is immutable, which in 
+        # this case is an array (mutable)
         transposed_grid = [[0] * len(grid) for i in range(len(grid[0]))]
         for r in range(len(grid)):
             for c in range(len(grid[0])):
